@@ -89,6 +89,12 @@ func TestSharedInstance(t *testing.T) {
 	assert.Equal(t, 2, tst.Count)
 }
 
+func TestPanicWithUnknownIdentifier(t *testing.T) {
+	c := NewContainer()
+
+	assert.Panics(t, func() { c.MustGet("something") }, "Expected a panic!")
+}
+
 func TestDependencyWithDependency(t *testing.T) {
 	c := NewContainer()
 
